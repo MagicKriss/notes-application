@@ -20,7 +20,7 @@ const App = () => {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/notes");
+        const response = await fetch("http://localhost:5000/api/v1/notes");
         const notes: Note[] = await response.json();
         setNotes(notes);
       } catch (e) {
@@ -39,7 +39,7 @@ const App = () => {
   const handleAddNote = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/notes", {
+      const response = await fetch("http://localhost:5000/api/v1/notes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -67,7 +67,7 @@ const App = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/notes/${selectedNote.id}`,
+        `http://localhost:5000/api/v1/notes/${selectedNote.id}`,
         {
           method: "PUT",
           headers: {
@@ -105,7 +105,7 @@ const App = () => {
     event.stopPropagation();
 
     try {
-      fetch(`http://localhost:5000/api/notes/${noteId}`, {
+      fetch(`http://localhost:5000/api/v1/notes/${noteId}`, {
         method: "DELETE",
       });
       const updatedNotes = notes.filter((note) => note.id != noteId);
